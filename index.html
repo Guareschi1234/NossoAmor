@@ -26,9 +26,56 @@
 
         <nav class="nav-links">
             <a class="nav-link" href="galeria.html">Nossas memórias</a>
-            <span class="pill-badge">♥ só eu &amp; você</span>
+            <button class="pill-badge" type="button" id="open-us-screen" aria-haspopup="dialog">♥ só eu &amp; você</button>
         </nav>
     </header>
+
+    <!-- Tela especial: escolha apenas uma vez a cada abertura -->
+    <div class="us-screen" id="us-screen" role="dialog" aria-modal="true" aria-labelledby="us-title" hidden>
+        <div class="us-choice" id="us-choice">
+            <button class="us-close" type="button" id="close-us-screen" aria-label="Fechar">×</button>
+            <span class="eyebrow" id="us-title">QUEM VOCÊ QUER CONHECER PRIMEIRO?</span>
+            <h2>Escolha uma parte do nosso amor</h2>
+            <div class="choice-options">
+                <button type="button" class="choice-card choice-him" data-show-person="him">
+                    <span>ELE</span>
+                    <strong>Guilherme</strong>
+                </button>
+                <button type="button" class="choice-card choice-her" data-show-person="her">
+                    <span>ELA</span>
+                    <strong>Verônica</strong>
+                </button>
+            </div>
+        </div>
+
+        <section class="person-panel person-him" id="him-panel" aria-label="Seção do Guilherme" hidden>
+            <button class="person-exit" type="button" data-close-us-screen aria-label="Sair da seção">Sair ×</button>
+            <button class="person-switch switch-to-her" type="button" data-show-person="her" aria-label="Ver seção dela">Ver ela →</button>
+            <div class="person-content">
+                <div class="person-carousel" data-person-carousel="him">
+                    <button type="button" class="person-photo" aria-label="Próxima foto dele">
+                        <img src="imagem dele 1.jpeg" alt="Guilherme">
+                    </button>
+                    <div class="person-dots" aria-hidden="true"></div>
+                </div>
+                <p class="person-text">Esse é o Guilherme, ele é o garoto mais sortudo do mundo, ele é apenas um nerd que faz TI, gosta de jogar e faz joia para todas as fotos, tem seus cabelinhos cachados e ama muito uma menina que é indigena e ruiva, ele tem muita sorte dela amar ele pois ele sem querer deu varis gaps dela (desculpa amor), tirando tudo isso ele é apenas um pobre coitado</p>
+            </div>
+        </section>
+
+        <section class="person-panel person-her" id="her-panel" aria-label="Seção da Verônica" hidden>
+            <button class="person-exit" type="button" data-close-us-screen aria-label="Sair da seção">Sair ×</button>
+            <button class="person-switch switch-to-him" type="button" data-show-person="him" aria-label="Ver seção dele">← Ver ele</button>
+            <div class="person-content">
+                <div class="person-carousel" data-person-carousel="her">
+                    <button type="button" class="person-photo" aria-label="Próxima foto dela">
+                        <img src="imagem dela 2.jpeg" alt="Verônica">
+                    </button>
+                    <div class="person-dots" aria-hidden="true"></div>
+                </div>
+                <p class="person-text">Essa é a Verônica, ai que mulher linda, ela é uma indigina ruiva muito linda e como não é só de beleza que se vive uma mulher, ela faz de tudo um pouco, uma mulher incrivel e independente, seus caixos ruivos deixao um serto garoto louco, seu jeito e seus olhos o deixao muito apaixonado, eu escreveria textos de o quanto ela é incrivel mas como tem que caber na tela de um celular eu vou parar por aqui kkkkk, ela faz com que os dias sejam leves e especiais, além de amar um garoto (eu acho) que é muito esquisitinho :).</p>
+            </div>
+        </section>
+    </div>
 
     <!-- Seção Principal -->
     <main class="container">
@@ -57,16 +104,16 @@
                 <div class="polaroid-stage">
                     <!-- Cartas de fundo para efeito de pilha -->
                     <div class="polaroid-stack-bg stack-left">
-                        <img id="prev-preview" src="https://unsplash.com" alt="">
+                        <img id="prev-preview" src="img 3.jpeg" alt="">
                     </div>
                     <div class="polaroid-stack-bg stack-right">
-                        <img id="next-preview" src="https://unsplash.com" alt="">
+                        <img id="next-preview" src="img 2.jpg" alt="">
                     </div>
 
                     <!-- Polaroid Ativa -->
                     <div class="polaroid-card" id="active-polaroid">
                         <div class="photo-frame">
-                            <img id="carousel-img" src="https://unsplash.com" alt="Nossa memória">
+                            <img id="carousel-img" src="IMG 1.jpeg" alt="Nossa memória">
                         </div>
                         <p class="polaroid-caption" id="carousel-caption">Meu lugar favorito, com a minha pessoa
                             favorita.</p>
@@ -74,16 +121,7 @@
                     </div>
                 </div>
 
-                <!-- Controles do Carrossel -->
-                <div class="carousel-controls">
-                    <button class="btn btn-outline-primary nav-btn prev" id="prev-btn" aria-label="Foto anterior">←</button>
-                    <div class="dots" id="carousel-dots">
-                        <span class="dot active" data-index="0"></span>
-                        <span class="dot" data-index="1"></span>
-                        <span class="dot" data-index="2"></span>
-                    </div>
-                    <button class="btn btn-primary nav-btn next" id="next-btn" aria-label="Próxima foto">→</button>
-                </div>
+                <!-- Clique na foto para avançar -->
                 <div class="counter" id="carousel-counter">01 / 03</div>
             </div>
 

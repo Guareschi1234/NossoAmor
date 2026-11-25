@@ -163,6 +163,7 @@ body {
     border-radius: 999px;
     font-size: 0.75rem;
     font-weight: 600;
+    cursor: pointer;
 }
 
 /* Container */
@@ -578,6 +579,245 @@ body {
     font-weight: 600;
 }
 
+body.us-screen-open {
+    overflow: hidden;
+}
+
+.us-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    background: rgba(42, 16, 25, 0.38);
+    backdrop-filter: blur(12px);
+}
+
+.us-screen[hidden],
+.person-panel[hidden],
+.us-choice[hidden] {
+    display: none !important;
+}
+
+.us-choice {
+    position: relative;
+    width: min(520px, 92vw);
+    padding: 34px 24px 28px;
+    text-align: center;
+    border-radius: 24px;
+    border: 1px solid rgba(194, 24, 91, 0.22);
+    background: rgba(248, 231, 238, 0.94);
+    box-shadow: 0 24px 70px rgba(43, 10, 20, 0.24);
+}
+
+.us-choice h2 {
+    font-family: var(--font-serif);
+    color: var(--primary-wine);
+    margin: 4px 0 22px;
+}
+
+.us-close {
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    border: 0;
+    background: transparent;
+    color: var(--primary-wine);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.choice-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.choice-card {
+    min-height: 150px;
+    border-radius: 18px;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.choice-card:hover {
+    transform: translateY(-3px);
+}
+
+.choice-card span {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+}
+
+.choice-card strong {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+}
+
+.choice-him {
+    color: #eaf3ff;
+    background: rgba(20, 58, 105, 0.94);
+    border-color: #0d2a50;
+}
+
+.choice-her {
+    color: #fff;
+    background: rgba(132, 68, 172, 0.94);
+    border-color: #603485;
+}
+
+.person-panel {
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    width: min(520px, calc(100vw - 24px));
+    display: flex;
+    align-items: center;
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.person-him {
+    left: 12px;
+    background: rgba(25, 68, 122, 0.68);
+    border: 2px solid #091f42;
+    box-shadow: 18px 0 48px rgba(9, 31, 66, 0.22);
+}
+
+.person-her {
+    right: 12px;
+    background: rgba(150, 94, 184, 0.68);
+    border: 2px solid #5e3679;
+    box-shadow: -18px 0 48px rgba(94, 54, 121, 0.22);
+}
+
+.person-content {
+    width: 100%;
+    height: 100%;
+    padding: 28px 26px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.person-carousel {
+    width: 100%;
+    max-height: 52%;
+}
+
+.person-photo {
+    width: 100%;
+    height: clamp(230px, 48vh, 430px);
+    display: block;
+    padding: 10px;
+    border: 0;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    cursor: pointer;
+}
+
+.person-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.person-dots {
+    height: 14px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.person-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.person-dots span.active {
+    width: 18px;
+    border-radius: 999px;
+    background: #fff;
+}
+
+.person-text {
+    margin: 10px 0 0;
+    padding: 14px 16px;
+    max-height: 31%;
+    overflow-y: auto;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: clamp(0.78rem, 1.8vw, 0.92rem);
+    line-height: 1.42;
+}
+
+.person-switch {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0;
+}
+
+.person-exit {
+    position: absolute;
+    z-index: 4;
+    top: 14px;
+    right: 14px;
+    padding: 7px 13px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 999px;
+    background: rgba(15, 20, 38, 0.34);
+    color: #fff;
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+
+.person-exit:hover {
+    background: rgba(15, 20, 38, 0.58);
+}
+
+.person-switch::after {
+    content: "→";
+    font-size: 1.2rem;
+}
+
+.switch-to-her {
+    right: -23px;
+    background: #8454a4;
+    border: 2px solid #5e3679;
+}
+
+.switch-to-him {
+    left: -23px;
+    background: #1a4d86;
+    border: 2px solid #091f42;
+}
+
+.switch-to-him::after {
+    content: "←";
+}
+
 /* Responsividade */
 @media (max-width: 900px) {
     .content-grid {
@@ -610,5 +850,71 @@ body {
     .heart-two,
     .flower-two {
         right: 3%;
+    }
+}
+
+@media (max-width: 600px) {
+    .pill-badge {
+        padding: 7px 12px;
+    }
+
+    .us-screen {
+        padding: 8px;
+    }
+
+    .us-choice {
+        width: calc(100vw - 16px);
+        padding: 30px 14px 20px;
+    }
+
+    .choice-options {
+        gap: 8px;
+    }
+
+    .choice-card {
+        min-height: 125px;
+    }
+
+    .person-panel {
+        top: 6px;
+        bottom: 6px;
+        width: calc(100vw - 12px);
+    }
+
+    .person-him {
+        left: 6px;
+    }
+
+    .person-her {
+        right: 6px;
+    }
+
+    .person-content {
+        padding: 18px 14px 12px;
+    }
+
+    .person-photo {
+        height: clamp(210px, 48vh, 330px);
+        padding: 7px;
+    }
+
+    .person-text {
+        max-height: 27%;
+        padding: 10px 12px;
+        font-size: 0.76rem;
+    }
+
+    .person-switch {
+        width: 42px;
+        height: 42px;
+        font-size: 0;
+    }
+
+    .switch-to-her {
+        right: -18px;
+    }
+
+    .switch-to-him {
+        left: -18px;
     }
 }

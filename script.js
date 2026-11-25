@@ -16,6 +16,13 @@ const slides = [
 let currentIndex = 0;
 let autoPlayInterval;
 const AUTO_PLAY_DELAY = 4000;
+const PERSON_AUTO_PLAY_DELAY = 2000;
+const personSlides = {
+    him: Array.from({ length: 7 }, (_, index) => `imagem dele ${index + 1}.jpeg`),
+    her: Array.from({ length: 8 }, (_, index) => `imagem dela ${index + 2}.jpeg`)
+};
+const personCarousels = {};
+let personAutoPlayInterval;
 
 const polaroidStage = document.querySelector(".polaroid-stage");
 const polaroidCard = document.getElementById("active-polaroid");
@@ -24,9 +31,6 @@ const carouselCaption = document.getElementById("carousel-caption");
 const prevPreview = document.getElementById("prev-preview");
 const nextPreview = document.getElementById("next-preview");
 const counter = document.getElementById("carousel-counter");
-const dots = document.querySelectorAll(".dot");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
 
 function updateCarousel(index) {
     polaroidCard.classList.add("fade-out");
@@ -45,10 +49,6 @@ function updateCarousel(index) {
         const formattedTotal = String(slides.length).padStart(2, "0");
         counter.textContent = `${formattedCurrent} / ${formattedTotal}`;
 
-        dots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === currentIndex);
-        });
-
         polaroidCard.classList.remove("fade-out");
     }, 180);
 }
@@ -66,27 +66,16 @@ function stopAutoPlay() {
 
 function resetAutoPlay() {
     stopAutoPlay();
-    updateCarousel(0);
     startAutoPlay();
 }
 
-prevBtn.addEventListener("click", () => {
-    updateCarousel(currentIndex - 1);
-    resetAutoPlay();
-});
-
-nextBtn.addEventListener("click", () => {
+polaroidCard.addEventListener("click", () => {
     updateCarousel(currentIndex + 1);
     resetAutoPlay();
 });
-
-dots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-        const index = Number(dot.getAttribute("data-index"));
-        updateCarousel(index);
-        resetAutoPlay();
-    });
-});
+polaroidCard.style.cursor = "pointer";
+polaroidCard.setAttribute("role", "button");
+polaroidCard.setAttribute("aria-label", "Próxima foto");
 
 polaroidStage.addEventListener("mouseenter", stopAutoPlay);
 polaroidStage.addEventListener("mouseleave", startAutoPlay);
@@ -103,3 +92,79 @@ document.addEventListener("keydown", (event) => {
 });
 
 startAutoPlay();
+
+const usScreen = document.getElementById("us-screen");
+const usChoice = document.getElementById("us-choice");
+const himPanel = document.getElementById("him-panel");
+const herPanel = document.getElementById("her-panel");
+const openUsScreen = document.getElementById("open-us-screen");
+const closeUsScreen = document.getElementById("close-us-screen");
+
+function showPerson(person) {
+    clearInterval(personAutoPlayInterval);
+    usChoice.hidden = true;
+    himPanel.hidden = person !== "him";
+    herPanel.hidden = person !== "her";
+    personAutoPlayInterval = setInterval(personCarousels[person], PERSON_AUTO_PLAY_DELAY);
+}
+
+openUsScreen.addEventListener("click", () => {
+    usScreen.hidden = false;
+    document.body.classList.add("us-screen-open");
+    clearInterval(personAutoPlayInterval);
+    usChoice.hidden = false;
+    himPanel.hidden = true;
+    herPanel.hidden = true;
+});
+
+closeUsScreen.addEventListener("click", () => {
+    clearInterval(personAutoPlayInterval);
+    usScreen.hidden = true;
+    document.body.classList.remove("us-screen-open");
+});
+
+document.querySelectorAll("[data-close-us-screen]").forEach((button) => {
+    button.addEventListener("click", () => closeUsScreen.click());
+});
+
+document.querySelectorAll("[data-show-person]").forEach((button) => {
+    button.addEventListener("click", () => showPerson(button.dataset.showPerson));
+});
+
+usScreen.addEventListener("click", (event) => {
+    if (event.target === usScreen) {
+        closeUsScreen.click();
+    }
+});
+
+document.querySelectorAll("[data-person-carousel]").forEach((carousel) => {
+    const photoButton = carousel.querySelector(".person-photo");
+    const image = photoButton.querySelector("img");
+    const dotsElement = carousel.querySelector(".person-dots");
+    const images = personSlides[carousel.dataset.personCarousel];
+    let index = 0;
+
+    images.forEach((_, dotIndex) => {
+        const dot = document.createElement("span");
+        dot.classList.toggle("active", dotIndex === 0);
+        dotsElement.append(dot);
+    });
+
+    function advancePhoto() {
+        index = (index + 1) % images.length;
+        image.src = images[index];
+        dotsElement.querySelectorAll("span").forEach((dot, dotIndex) => {
+            dot.classList.toggle("active", dotIndex === index);
+        });
+    }
+
+    personCarousels[carousel.dataset.personCarousel] = advancePhoto;
+    photoButton.addEventListener("click", advancePhoto);
+
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !usScreen.hidden) {
+        closeUsScreen.click();
+    }
+});
