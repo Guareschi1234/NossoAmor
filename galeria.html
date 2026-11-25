@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F8E7EE">
+    <title>Nosso varal de memórias - Entre Nós</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="galeria.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo-group">
+            <div class="logo">entre nós <span class="heart-filled">♥</span></div>
+            <span class="subtitle">Um pedacinho do nosso infinito.</span>
+        </div>
+        <nav class="nav-links">
+            <a class="nav-link" href="Index.html#memorias">Voltar para o início</a>
+            <span class="pill-badge">♥ só eu &amp; você</span>
+        </nav>
+    </header>
+
+    <main class="gallery-page">
+        <section class="gallery-shell" aria-labelledby="gallery-title">
+            <header class="gallery-header">
+                <div>
+                    <span class="eyebrow-pink">PEDACINHOS DA NOSSA HISTÓRIA</span>
+                    <h1 id="gallery-title">Nosso varal de memórias</h1>
+                    <p>Um lugar para guardar tudo que faz a gente sorrir.</p>
+                </div>
+                <span class="gallery-heart" aria-hidden="true">♡</span>
+            </header>
+            <div class="gallery-toolbar">
+                <p id="gallery-status" role="status">Conectando à galeria...</p>
+                <div class="gallery-actions">
+                    <button class="btn btn-primary" type="button" id="open-upload">＋ Guardar uma foto</button>
+                </div>
+            </div>
+            <div class="clothesline" aria-hidden="true"><span></span></div>
+            <div class="memory-grid" id="memory-grid" aria-live="polite"></div>
+            <div class="gallery-empty" id="gallery-empty" hidden>
+                <span>♡</span>
+                <h2>O varal está esperando por vocês</h2>
+                <p>Guardem aqui a primeira lembrança de vocês.</p>
+            </div>
+            <p class="gallery-note">As fotos e informações ficam guardadas no álbum compartilhado de vocês.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">entre nós</div>
+        <div class="footer-center">Feito com amor, para o nosso amor. <span class="heart-filled">♥</span></div>
+        <div class="footer-right">Hoje, amanhã e sempre.</div>
+    </footer>
+
+    <dialog class="gallery-dialog form-dialog" id="upload-dialog" aria-labelledby="upload-title">
+        <form class="memory-form" id="upload-form">
+            <header class="gallery-header">
+                <div>
+                    <span class="eyebrow-pink">UMA LEMBRANÇA PARA GUARDAR</span>
+                    <h2 id="upload-title">Pendure uma foto</h2>
+                </div>
+                <button class="icon-close" type="button" data-close-dialog aria-label="Fechar formulário">×</button>
+            </header>
+            <div class="file-picker">
+                <span>♡</span>
+                <strong id="selected-image-name">Escolha como adicionar sua foto</strong>
+                <small>JPG, PNG, GIF ou WebP · até 10 MB</small>
+                <div class="image-source-actions">
+                    <button class="btn btn-outline-primary" type="button" id="take-photo">Tirar foto</button>
+                    <button class="btn btn-outline-primary" type="button" id="choose-photo">Escolher imagem</button>
+                </div>
+                <input id="memory-camera" type="file" accept="image/jpeg,image/png,image/gif,image/webp" capture="environment">
+                <input id="memory-image" name="image" type="file" accept="image/jpeg,image/png,image/gif,image/webp">
+                <img id="image-preview" class="image-preview" alt="Prévia da foto escolhida" hidden>
+            </div>
+            <div class="form-fields">
+                <label>Um título para este momento<input class="form-control" name="title" type="text" maxlength="100" placeholder="Ex.: Nosso passeio de domingo"></label>
+                <label>Conte a história<textarea class="form-control" name="description" rows="3" maxlength="1000" placeholder="O que torna esse dia especial?"></textarea></label>
+                <label>Onde foi?<input class="form-control" name="location" type="text" maxlength="160" placeholder="Cidade, lugar ou cantinho especial"></label>
+                <label>Quando foi?<input class="form-control" name="taken_at" type="date"></label>
+                <fieldset class="who-picker">
+                    <legend>Quem está guardando?</legend>
+                    <input class="btn-check" type="radio" id="added-by-him" name="added_by" value="ele" autocomplete="off" required>
+                    <label class="btn btn-outline-primary" for="added-by-him">Ele</label>
+                    <input class="btn-check" type="radio" id="added-by-her" name="added_by" value="ela" autocomplete="off" required>
+                    <label class="btn btn-outline-primary" for="added-by-her">Ela</label>
+                    <p id="who-preview" aria-live="polite">Selecione quem está adicionando a lembrança.</p>
+                </fieldset>
+            </div>
+            <p class="form-error" id="upload-error" role="alert" hidden></p>
+            <div class="form-footer">
+                <button class="btn btn-outline-primary" type="button" data-close-dialog>Cancelar</button>
+                <button class="btn btn-primary" type="submit" id="save-memory">Guardar no varal</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="gallery-dialog details-dialog" id="details-dialog" aria-labelledby="details-title">
+        <div class="memory-details">
+            <button class="icon-close details-close" type="button" data-close-dialog aria-label="Fechar detalhes">×</button>
+            <img class="details-image" id="details-image" alt="">
+            <div class="details-copy">
+                <span class="eyebrow-pink">UMA MEMÓRIA NOSSA</span>
+                <h2 id="details-title"></h2>
+                <p class="details-description" id="details-description"></p>
+                <dl class="details-meta" id="details-meta"></dl>
+                <div class="details-actions">
+                    <button class="btn btn-primary download-button" id="download-memory" type="button">↓ Baixar foto</button>
+                    <button class="btn btn-outline-danger" id="delete-memory" type="button">
+                        <svg aria-hidden="true" viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2.5 4h11M6 4V2.5h4V4m2.5 0-.6 9.5H4.1L3.5 4m3 2.5v4m3-4v4"/>
+                        </svg>
+                        Excluir memória
+                    </button>
+                </div>
+                <p class="form-error download-error" id="download-error" role="status" hidden></p>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="gallery-dialog delete-dialog" id="delete-dialog" aria-labelledby="delete-title">
+        <div class="delete-confirmation">
+            <button class="icon-close delete-close" type="button" data-close-dialog aria-label="Cancelar exclusão">×</button>
+            <span class="sad-face" aria-hidden="true">☹</span>
+            <span class="eyebrow-pink">VAI DEIXAR SAUDADE</span>
+            <h2 id="delete-title">Essa lembrança vai sair do varal...</h2>
+            <p>Tem certeza de que quer excluir <strong id="delete-memory-title"></strong>?</p>
+            <p class="delete-warning">A foto e os detalhes serão apagados, e não dá para recuperar depois.</p>
+            <p class="form-error" id="delete-error" role="alert" hidden></p>
+            <div class="delete-actions">
+                <button class="btn btn-outline-primary" type="button" data-close-dialog>Não, quero manter</button>
+                <button class="btn btn-danger" id="confirm-delete" type="button">Sim, excluir memória</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="supabase-config.js"></script>
+    <script src="galeria.js"></script>
+</body>
+
+</html>

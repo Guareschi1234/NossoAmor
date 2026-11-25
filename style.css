@@ -1,0 +1,614 @@
+:root {
+    --bg-page: #F8E7EE;
+    --bg-card-pink: #F2A7C6;
+    --border-pink: #F2A7C6;
+    --primary-wine: #7A0E2A;
+    --accent-rose: #C2185B;
+    --text-dark: #2B0A14;
+    --text-muted: #7A0E2A;
+    --white: #FFFFFF;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.btn {
+    --bs-btn-font-family: var(--font-sans);
+    --bs-btn-font-weight: 600;
+    --bs-btn-font-size: 0.84rem;
+    --bs-btn-border-radius: 999px;
+    --bs-btn-padding-x: 1.05rem;
+    --bs-btn-padding-y: 0.54rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--accent-rose);
+    --bs-btn-border-color: var(--accent-rose);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--primary-wine);
+    --bs-btn-hover-border-color: var(--primary-wine);
+    --bs-btn-focus-shadow-rgb: 194, 24, 91;
+    --bs-btn-active-bg: var(--primary-wine);
+    --bs-btn-active-border-color: var(--primary-wine);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--accent-rose);
+    --bs-btn-border-color: #e4a5ba;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--accent-rose);
+    --bs-btn-hover-border-color: var(--accent-rose);
+    --bs-btn-focus-shadow-rgb: 194, 24, 91;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--primary-wine);
+    --bs-btn-active-border-color: var(--primary-wine);
+}
+
+.btn-danger {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #9c243f;
+    --bs-btn-border-color: #9c243f;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--primary-wine);
+    --bs-btn-hover-border-color: var(--primary-wine);
+    --bs-btn-focus-shadow-rgb: 156, 36, 63;
+}
+
+.btn-outline-danger {
+    --bs-btn-color: #9c4a61;
+    --bs-btn-border-color: #d8a0b0;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #9c243f;
+    --bs-btn-hover-border-color: #9c243f;
+    --bs-btn-focus-shadow-rgb: 156, 36, 63;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--primary-wine);
+    --bs-btn-active-border-color: var(--primary-wine);
+}
+
+.btn:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(194, 24, 91, 0.14);
+}
+
+.form-control {
+    border-color: #e8c8d3;
+    border-radius: 0.75rem;
+    font-family: var(--font-sans);
+}
+
+.form-control:focus {
+    border-color: #d46b91;
+    box-shadow: 0 0 0 0.25rem rgba(194, 24, 91, 0.15);
+}
+
+.form-check-input:checked {
+    border-color: var(--accent-rose);
+    background-color: var(--accent-rose);
+}
+
+.form-check-input:focus {
+    border-color: #d46b91;
+    box-shadow: 0 0 0 0.25rem rgba(194, 24, 91, 0.15);
+}
+
+/* Navbar */
+.navbar {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(200, 75, 107, 0.08);
+}
+
+.logo-group .logo {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--primary-wine);
+    line-height: 1.1;
+}
+
+.heart-filled {
+    color: var(--accent-rose);
+    font-size: 0.95em;
+}
+
+.logo-group .subtitle {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-rose);
+}
+
+.pill-badge {
+    background-color: var(--bg-card-pink);
+    color: var(--accent-rose);
+    border: 1px solid var(--border-pink);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Container */
+.container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    margin-bottom: 54px;
+    position: relative;
+}
+
+.floating-heart,
+.floating-flower {
+    position: absolute;
+    color: var(--accent-rose);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.floating-heart {
+    font-size: 1.25rem;
+}
+
+.heart-one {
+    left: 11%;
+    top: 36%;
+    transform: rotate(-12deg);
+}
+
+.heart-two {
+    right: 10%;
+    top: 22%;
+    font-size: 1.6rem;
+}
+
+.floating-flower {
+    font-size: 1.45rem;
+    color: #C2185B;
+}
+
+.flower-one {
+    left: 18%;
+    bottom: -8px;
+    transform: rotate(-16deg);
+}
+
+.flower-two {
+    right: 18%;
+    bottom: 2px;
+    transform: rotate(12deg);
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-rose);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 0 60px;
+}
+
+.hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 400;
+    color: var(--primary-wine);
+    line-height: 1.12;
+}
+
+.hero h1 em {
+    font-style: italic;
+    color: var(--accent-rose);
+}
+
+.deco-heart {
+    position: absolute;
+    color: #E2859C;
+    font-size: 1.3rem;
+    user-select: none;
+}
+
+.deco-heart.left {
+    top: 12px;
+    left: 0;
+    transform: rotate(-15deg);
+}
+
+.deco-heart.right {
+    bottom: 10px;
+    right: 10px;
+    transform: rotate(15deg);
+    font-size: 1.1rem;
+}
+
+/* Grid Principal */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 22px;
+    padding-left: 24px;
+}
+
+/* Carrossel Polaroid */
+.carousel-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-column .section-label {
+    align-self: flex-start;
+}
+
+.polaroid-stage {
+    position: relative;
+    width: 100%;
+    max-width: 470px;
+    height: 410px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.polaroid-stack-bg {
+    position: absolute;
+    width: 88%;
+    height: 92%;
+    background: var(--white);
+    padding: 14px 14px 52px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(123, 30, 58, 0.07);
+    transition: transform 0.4s ease;
+    overflow: hidden;
+}
+
+.polaroid-stack-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
+    filter: blur(0.5px);
+}
+
+.stack-left {
+    transform: rotate(-4.5deg) translate(-16px, 4px);
+    z-index: 1;
+}
+
+.stack-right {
+    transform: rotate(4deg) translate(16px, 6px);
+    z-index: 2;
+}
+
+.polaroid-card {
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    background: var(--white);
+    padding: 16px 16px 22px;
+    border-radius: 4px;
+    box-shadow: 0 18px 40px rgba(123, 30, 58, 0.12);
+    transform: rotate(-1.2deg);
+    transition: opacity 0.3s ease, transform 0.35s ease;
+}
+
+.polaroid-card.fade-out {
+    opacity: 0.35;
+    transform: rotate(-1.2deg) scale(0.98);
+}
+
+.photo-frame {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background-color: #f3e6e8;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.polaroid-caption {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--primary-wine);
+    text-align: center;
+    margin-top: 16px;
+}
+
+.polaroid-heart {
+    position: absolute;
+    bottom: 10px;
+    right: 16px;
+    color: var(--accent-rose);
+    font-size: 1.15rem;
+}
+
+/* Controles do Carrossel */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 8px;
+}
+
+.nav-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background-color: #E5C5CD;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 24px;
+    background-color: var(--accent-rose);
+}
+
+.counter {
+    margin-top: 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent-rose);
+    letter-spacing: 0.1em;
+}
+
+/* Carta à Direita */
+.letter-column {
+    margin-top: 28px;
+}
+
+.letter-card {
+    position: relative;
+    background-color: var(--bg-card-pink);
+    border: 1px solid var(--border-pink);
+    border-radius: 20px;
+    padding: 36px 34px 42px;
+    box-shadow: 0 14px 32px rgba(200, 75, 107, 0.08);
+    overflow: hidden;
+}
+
+.letter-card::before,
+.letter-card::after {
+    content: "♥";
+    position: absolute;
+    color: #C2185B;
+    opacity: 0.42;
+    font-size: 1.15rem;
+    pointer-events: none;
+}
+
+.letter-card::before {
+    left: 18px;
+    bottom: 16px;
+    transform: rotate(-18deg);
+}
+
+.letter-card::after {
+    right: 128px;
+    top: 18px;
+    transform: rotate(14deg);
+}
+
+.letter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.eyebrow-pink {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-rose);
+    font-weight: 600;
+}
+
+.outline-heart {
+    color: var(--accent-rose);
+    font-size: 1.15rem;
+}
+
+.letter-card h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--primary-wine);
+    line-height: 1.18;
+    margin-bottom: 20px;
+}
+
+.letter-body p {
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    max-width: 92%;
+}
+
+.letter-sign {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--accent-rose);
+    margin-top: 24px;
+    line-height: 1.3;
+}
+
+.floral-deco {
+    position: absolute;
+    bottom: -10px;
+    right: -8px;
+    width: 135px;
+    height: auto;
+    pointer-events: none;
+    opacity: 1;
+    filter: drop-shadow(0 5px 7px rgba(122, 14, 42, 0.12));
+}
+
+.letter-footnote {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+}
+
+/* Citação Inferior */
+.quote-section {
+    text-align: center;
+    margin-top: 76px;
+    padding-top: 20px;
+}
+
+.quote-section h3 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--accent-rose);
+    margin-bottom: 6px;
+}
+
+.quote-section p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Rodapé */
+.footer {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 32px 36px;
+    border-top: 1px solid rgba(200, 75, 107, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.footer-logo {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--primary-wine);
+    font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .carousel-column .section-label {
+        align-self: center;
+        padding-left: 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .heart-one,
+    .flower-one {
+        left: 3%;
+    }
+
+    .heart-two,
+    .flower-two {
+        right: 3%;
+    }
+}
