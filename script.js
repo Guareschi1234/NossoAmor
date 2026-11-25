@@ -1,14 +1,14 @@
 const slides = [
     {
-        image: "img/IMG 1.jpeg",
+        image: "IMG 1.jpeg",
         caption: "Meu lugar favorito, com a minha pessoa favorita."
     },
     {
-        image: "img/img 2.jpg",
+        image: "img 2.jpg",
         caption: "Cada instante ao seu lado vira a minha melhor lembrança."
     },
     {
-        image: "img/img 3.jpeg",
+        image: "img 3.jpeg",
         caption: "Nosso pequeno infinito construído dia após dia."
     }
 ];
